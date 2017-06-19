@@ -179,13 +179,11 @@ class OneJar extends Jar {
         File manifestFile = File.createTempFile("one-jar-manifest", ".mf")
         manifestFile.deleteOnExit()
 
-        manifestFile.withWriter { writer ->
-            manifest.attributes.put("Main-Class", "com.simontuffs.onejar.Boot")
-            manifest.attributes.put("One-Jar-Main-Class", mainClass)
-            manifest.attributes.put("One-Jar-Show-Expand", showExpand)
-            manifest.attributes.put("One-Jar-Confirm-Expand", confirmExpand)
-            manifest.writeTo(writer)
-        }
+        manifest.attributes.put("Main-Class", "com.simontuffs.onejar.Boot")
+        manifest.attributes.put("One-Jar-Main-Class", mainClass)
+        manifest.attributes.put("One-Jar-Show-Expand", showExpand)
+        manifest.attributes.put("One-Jar-Confirm-Expand", confirmExpand)
+        manifest.writeTo(manifestFile)
         return manifestFile
     }
 }
